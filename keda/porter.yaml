@@ -1,0 +1,52 @@
+mixins:
+  - exec
+  - helm
+
+name: keda
+version: 0.1.0
+description: "Deploy Keda using CNAB"
+invocationImage: scottyc/cnab-keda:latest
+
+credentials:
+- name: kubeconfig
+  path: /root/.kube/config
+  type: path
+
+parameters:
+- name: HELM_SOURCE
+  type: string
+  default: "/usr/local/bin/helm"
+
+install:
+- exec:
+    description: "Add keda repo to helm"
+    command: "{{ bundle.parameters.HELM_SOURCE }}"
+    arguments:
+      - repo
+      - add
+      - kedacore
+      - https://kedacore.azureedge.net/helm
+
+- exec:
+    description: "helm update"
+    command: "{{ bundle.parameters.HELM_SOURCE }}"
+    arguments:
+      - update
+
+- helm:
+     description: "Helm install keda"
+     name: keda
+     chart: kedacore/keda-edge
+     replace: true
+     namespace: keda
+     set:
+      logLevel: "debug"
+
+uninstall:
+- exec:
+      description: "Uninstall Keda via Helm"
+      command: "{{ bundle.parameters.HELM_SOURCE }}"
+      arguments:
+        - delete
+        - keda
+        - --purge
