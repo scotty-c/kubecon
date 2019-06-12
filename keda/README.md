@@ -2,12 +2,12 @@
 
 You need porter installed `https://porter.sh/`
 
-#Build
+# Build
 ```
 porter bundles build
 ```
 
-#Install
+# Install
 ```
 porter bundles install
 ```
