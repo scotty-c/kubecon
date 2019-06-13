@@ -12,15 +12,10 @@ credentials:
   path: /root/.kube/config
   type: path
 
-parameters:
-- name: HELM_SOURCE
-  type: string
-  default: "/usr/local/bin/helm"
-
 install:
 - exec:
     description: "Add keda repo to helm"
-    command: "{{ bundle.parameters.HELM_SOURCE }}"
+    command: "helm"
     arguments:
       - repo
       - add
@@ -29,7 +24,7 @@ install:
 
 - exec:
     description: "helm update"
-    command: "{{ bundle.parameters.HELM_SOURCE }}"
+    command: "helm"
     arguments:
       - update
 
@@ -45,7 +40,7 @@ install:
 uninstall:
 - exec:
       description: "Uninstall Keda via Helm"
-      command: "{{ bundle.parameters.HELM_SOURCE }}"
+      command: "helm"
       arguments:
         - delete
         - keda
