@@ -8,8 +8,8 @@
     "images": null,
     "invocationImages": [
         {
-            "digest": "sha256:38f556df5260c0266d76b931b5bc43cf17a800a48b2fd9af8aa1fefa2a257689",
-            "image": "scottyc/cnab-keda@sha256:38f556df5260c0266d76b931b5bc43cf17a800a48b2fd9af8aa1fefa2a257689",
+            "digest": "sha256:96e2eef00ca3dbb037e42f4cca075576c90fc7dca23c48936d7e24420c0f0920",
+            "image": "scottyc/cnab-keda@sha256:96e2eef00ca3dbb037e42f4cca075576c90fc7dca23c48936d7e24420c0f0920",
             "imageType": "docker"
         }
     ],
