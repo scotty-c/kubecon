@@ -30,9 +30,10 @@ install:
 
 - helm:
      description: "Helm install keda"
-     name: keda
      chart: kedacore/keda-edge
+     name: keda
      replace: true
+     devel: true
      namespace: keda
      set:
       logLevel: "debug"
