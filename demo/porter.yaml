@@ -1,0 +1,34 @@
+mixins:
+  - kubernetes
+  - helm
+
+name: keda-demo
+version: 0.1.0
+description: "Deploy Keda rabbitMQ and go demo via porter"
+invocationImage: scottyc/cnab-keda-demo:latest
+
+credentials:
+- name: kubeconfig
+  path: /root/.kube/config
+  type: path
+
+install:
+- helm:
+     description: "Helm install rabbitMQ"
+     chart: 
+     name: rabbitmq 
+     wait: true
+     replace: true
+     set:
+      rabbitmq.username: "user"
+      rabbitmq.password: "PASSWORD"
+
+
+uninstall:
+- exec:
+      description: "Uninstall Keda via Helm"
+      command: "helm"
+      arguments:
+        - delete
+        - keda
+        - --purge
