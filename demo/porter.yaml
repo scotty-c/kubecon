@@ -1,6 +1,7 @@
 mixins:
   - kubernetes
   - helm
+  - exec
 
 name: keda-demo
 version: 0.1.0
@@ -23,12 +24,24 @@ install:
       rabbitmq.username: "user"
       rabbitmq.password: "PASSWORD"
 
+- kubernetes:
+    description: "Deploying consumer"
+    manifests:
+      - manifests/consumer
+    wait: true
+    #outputs: TODO
+
+- kubernetes:
+    description: "Deploying publisher"
+    manifests:
+      - manifests/publisher
+    #outputs: TODO  
 
 uninstall:
 - exec:
-      description: "Uninstall Keda via Helm"
+      description: "Uninstall rabbitmq via Helm"
       command: "helm"
       arguments:
         - delete
-        - keda
+        - rabbitmq
         - --purge
