@@ -1,2 +1,4 @@
 keda/cnab/app/mixins/
 keda/cnab/app/porter-runtime
+demo/cnab/app/mixins/
+demo/cnab/app/porter-runtime

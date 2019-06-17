@@ -16,7 +16,7 @@ credentials:
 install:
 - helm:
      description: "Helm install rabbitMQ"
-     chart: 
+     chart: stable/rabbitmq
      name: rabbitmq 
      wait: true
      replace: true
