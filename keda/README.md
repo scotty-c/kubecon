@@ -58,3 +58,5 @@ Now we can install the bundle referencing the credential we created in the previ
 ```
 porter install -c keda
 ```
+
+Now we are reading to deply our [demo application](../demo/README.md)
