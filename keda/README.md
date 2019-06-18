@@ -8,7 +8,7 @@ For the environment to build you will need the following software installed
 
 Install Porter, Docker and Golang as per the instructions above 
 
-To run this bundle you will need to get build the Helm mixin from master if you are on version `v0.5.0-ralpha.3+englishrose` or below. This is due to [issue 37](https://github.com/deislabs/porter-helm/issues/37) and fixed in [PR 38]()https://github.com/deislabs/porter-helm/pull/38) To build the mixin please use the below instructions.
+To run this bundle you will need to get build the Helm mixin from master if you are on version `v0.5.0-ralpha.3+englishrose` or below. This is due to [issue 37](https://github.com/deislabs/porter-helm/issues/37) and fixed in [PR 38](https://github.com/deislabs/porter-helm/pull/38) To build the mixin please use the below instructions.
 
 ```
 cd $GOPATH
@@ -47,7 +47,7 @@ Generating new credential keda from bundle keda
   shell command
 ```
 
-Chose file path and add the following value
+Chose file path option and add the following value
 ```
 ? Enter the path that will be used to set credential "kubeconfig" $HOME/.kube/config
 ```
