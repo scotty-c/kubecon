@@ -63,3 +63,5 @@ South Africa West    -34.075691  18.843266    southafricawest
 
 There are a whole heap of params at the top of the script that you can change if you like,  
 or just keep the defaults.
+
+Now you have your cluster set up you can install [keda via CNAB with porter](keda/README.md)
