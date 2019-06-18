@@ -2,9 +2,9 @@
 
 ## Prerequisites
 For the environment to build you will need the following software installed
- - [porter](https://porter.sh/)
- - [docker](https://www.docker.com/)
- - [golang 1.11.4 or above](https://golang.org/)
+ - [Porter](https://porter.sh/)
+ - [Docker](https://www.docker.com/)
+ - [Golang 1.11.4 or above](https://golang.org/)
 
 Install Porter, Docker and Golang as per the instructions above 
 
