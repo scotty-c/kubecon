@@ -45,3 +45,15 @@ uninstall:
         - delete
         - rabbitmq
         - --purge
+
+- kubernetes:
+      description: "Uninstalling consumer"
+      manifests:
+        - manifests/consumer
+      wait: true         
+
+- kubernetes:
+      description: "Uninstalling publisher"
+      manifests:
+        - manifests/publisher
+      wait: true 
