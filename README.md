@@ -3,7 +3,7 @@
 In this demo we are going to run a [Kubernetes](https://kubernetes.io/) cluster on [Azure](https://cda.ms/XK) with [Virtual node](https://cda.ms/XL) enabled.  
 Virtual node is based of the open source project [Virtual Kubelet](https://cda.ms/XM)  
 
-This demo assumes you have an Azure account, if you dont sign up for a free trail [here](https://cda.ms/Y8)
+This demo assumes you have an Azure account, if you dont sign up for a free trial [here](https://cda.ms/Y8)
 
 ## Prerequisites
 
