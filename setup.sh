@@ -75,7 +75,7 @@ az aks create \
     --resource-group $AKS_CLUSTER_RG \
     --name vk-k8s \
     --node-count 3 \
-    --kubernetes-version 1.14.0 \
+    --kubernetes-version 1.14.5 \
     --network-plugin azure \
     --service-cidr 10.0.0.0/16 \
     --dns-service-ip $KUBE_DNS_IP \
