@@ -5,7 +5,7 @@ For the environment to build you will need the following software installed
  - [Porter](https://porter.sh/)
  - [Docker](https://www.docker.com/)
 
-Install Porter, Docker and Golang as per the instructions above 
+Install Porter and Docker as per the instructions above 
 
 Now we are ready to build the bundle
 
