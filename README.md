@@ -17,10 +17,11 @@ For the environment to build you will need the following software installed
 
 # Set up your cluster
 To set up your cluster just run the script `setup.sh`       
-The script will as you two questions 
+The script will as you three questions 
 ```
 Enter the subscription to use:
 Enter region to deploy the cluster:
+Enter Kubernetes version you want to deploy:
 ```
 The subscription to use to connect to Azure with
 
