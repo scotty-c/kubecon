@@ -5,6 +5,7 @@ set -o pipefail
 
 read -p "Enter the subscription to use: "  SUB
 read -p "Enter region to deploy the cluster: "  LOCATION
+read -p "Enter Kubernetes version you want to deploy: " K8SVER
 
 az account set --subscription "$SUB"
 
@@ -30,16 +31,17 @@ else
     az group create -l $LOCATION -n $AKS_CLUSTER_RG
 fi
 
-SP_THERE=$(az ad sp list --display-name $SP_NAME -o table )
-echo "Checking for pre created service principal"
-if [ -z "$SP_THERE" ]
-then
-      echo "The service principal does not exsist"
-else
-      echo "Deleting service principal, we will recreate it later in the script"
-      az ad sp delete --id http://$SP_NAME
+# TODO look for better way to test for sp
+#SP_THERE=$(az ad sp list --display-name $SP_NAME -o table )
+#echo "Checking for pre created service principal"
+#if [ -z "$SP_THERE" ]
+#then
+#      echo "The service principal does not exsist"
+#else
+#      echo "Deleting service principal, we will recreate it later in the script"
+#      az ad sp delete --id http://$SP_NAME
 
-fi
+#fi
 }
 
 create_vnet () { 
@@ -64,18 +66,16 @@ VNETID=$(az network vnet show --resource-group $AKS_CLUSTER_RG --name $VNET_NAME
 AZURE_CLIENT_SECRET=$(az ad sp create-for-rbac --name $SP_NAME --role Contributor | jq -r .password)
 AZURE_CLIENT_ID=$(az ad sp show --id http://$SP_NAME --query appId --output tsv)
 AZURE_TENANT_ID=$(az ad sp show --id http://$SP_NAME --query appOwnerTenantId --output tsv )
-export AZURE_CLIENT_ID
-export AZURE_TENANT_ID
-export AZURE_CLIENT_SECRET
 echo ""
 echo "The client secret is $AZURE_CLIENT_SECRET"
 VNET_SUBNET_ID=$(az network vnet subnet show --resource-group $AKS_CLUSTER_RG --vnet-name $VNET_NAME --name $CLUSTER_SUBNET_NAME --query id -o tsv)
+sleep 30
 az role assignment create --assignee $AZURE_CLIENT_ID --scope $VNETID --role Contributor
 az aks create \
     --resource-group $AKS_CLUSTER_RG \
     --name vk-k8s \
     --node-count 3 \
-    --kubernetes-version 1.14.5 \
+    --kubernetes-version $K8SVER \
     --network-plugin azure \
     --service-cidr 10.0.0.0/16 \
     --dns-service-ip $KUBE_DNS_IP \
@@ -119,7 +119,7 @@ create_virtual_node () {
 az aks enable-addons \
     --resource-group $AKS_CLUSTER_RG \
     --name vk-k8s \
-    --addons $SP_NAME \
+    --addons virtual-node \
     --subnet-name $VN_SUBNET_NAME
 }
 
