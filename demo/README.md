@@ -43,7 +43,7 @@ kubectl get hpa -w
 And then watch the pods and make sure that they are only scaling on virtual node in another terminal run
 
 ```
-kubectl get pods -o wide
+kubectl get pods -o wide -w
 ```
 
 # Clean up 
